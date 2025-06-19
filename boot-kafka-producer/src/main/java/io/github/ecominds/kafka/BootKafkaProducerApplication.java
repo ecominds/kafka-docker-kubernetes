@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class BootKafkaProducerApplication {
 	public static void main(String[] args) {
+		log.info("Starting producer application");
 		SpringApplication.run(BootKafkaProducerApplication.class, args);
 	}
 
