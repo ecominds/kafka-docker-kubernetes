@@ -2,13 +2,27 @@ server:
   port: 80
   shutdown: graceful
 spring:
-  application.name: boot-kafka-producer
   kafka:
-    bootstrap-servers: localhost:9092
+    admin.auto-create: false
+    admin.properties.request.timeout.ms: 60000
+    bootstrap-servers: host.docker.internal:9092
+    properties:
+      security.protocol: PLAINTEXT
+      sasl.mechanism: PLAIN
+      sasl.jaas.config: >
+        org.apache.kafka.common.security.plain.PlainLoginModule required
+        username="kafkaclient"
+        password="kafkasecret";
+      sasl.client.callback.handler.class: org.apache.kafka.common.security.authenticator.DefaultLoginCallbackHandler
+    consumer:
+      group-id: my-consumer-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
 
 logging:
   level:
-    org.apache.kafka.clients.admin: ERROR
+    org.apache.kafka: DEBUG
