@@ -37,7 +37,7 @@ services:
       - KAFKA_CLIENT_PASSWORDS=kafkasecret
       - KAFKA_INTER_BROKER_USER=kafkaclient
       - KAFKA_INTER_BROKER_PASSWORD=kafkasecret
-      - ALLOW_PLAINTEXT_LISTENER=no
+      - ALLOW_PLAINTEXT_LISTENER=yes
     depends_on:
       - zookeeper
     volumes:

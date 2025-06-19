@@ -1,0 +1,8 @@
+services:
+  kafka-client:
+    image: edenhill/kcat:1.7.1
+    container_name: kafka-client
+    stdin_open: true
+    tty: true
+    networks:
+      - default

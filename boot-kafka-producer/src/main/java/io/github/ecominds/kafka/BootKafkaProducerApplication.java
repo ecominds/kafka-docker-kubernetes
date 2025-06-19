@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.context.annotation.Bean;
 
 @Slf4j
@@ -15,9 +16,10 @@ public class BootKafkaProducerApplication {
 	}
 
 	@Bean
-	public CommandLineRunner run(){
+	public CommandLineRunner run(KafkaProperties kafkaProperties){
 		return args -> {
 			log.info("Kafka producer is ready for service");
+			System.out.println("Kafka config: " + kafkaProperties.getProperties());
 		};
 	}
 }
